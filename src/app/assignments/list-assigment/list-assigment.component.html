@@ -1,0 +1,153 @@
+<app-navigation></app-navigation>
+
+<div class="content-page">
+
+
+  <div class="content">
+
+    <div class="container-fluid">
+
+
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="breadcrumb-holder">
+            <h1 class="main-title float-left">Assignments</h1>
+            <ol class="breadcrumb float-right">
+              <li class="breadcrumb-item">Accueil</li>
+              <li class="breadcrumb-item active">Liste des assignments</li>
+            </ol>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+      <!-- end row -->
+
+
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-calendar-minus"></i> Devoirs Non Rendu
+            </div>
+
+            <div class="card-body">
+
+              <div class="table-responsive">
+                <table class="table table-condensed table-hover table-bordered table-responsive-md">
+                  <tbody cdkDropList #todoList="cdkDropList" [cdkDropListData]="assignmentsNonRendu"
+                    [cdkDropListConnectedTo]="[doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
+
+
+                    <cdk-virtual-scroll-viewport #scrollerNon itemSize="50" class="example-viewport">
+                      <mat-card *cdkVirtualFor="let a of assignmentsNonRendu" class="example-card" cdkDrag>
+                        <mat-card-header>
+                          <div mat-card-avatar>
+                            <img class="img-card" src="assets/images/matiere/{{a.imageMatiere}}">
+                          </div>
+                          <mat-card-title>{{a.matiere}}</mat-card-title>
+                          <mat-card-subtitle>L'etudiant(e) <b>{{a.nom}}</b>, a un devoir sur <b>{{a.matiere}}</b> a
+                            rendre le <b>{{a.dateDeRendu | date}}</b> </mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                          <p *ngIf="a.rendu; else nonsoumis" appRendu><b>{{a.nom}}, rendu par
+                              l'élève.</b> </p>
+                          <ng-template #nonsoumis>
+                            <p appNonRendu>
+                              {{a.nom}}, non encore rendu par l'élève.
+                            </p>
+                          </ng-template>
+                        </mat-card-content>
+                      </mat-card>
+                    </cdk-virtual-scroll-viewport>
+                  </tbody>
+
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- end card-->
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-calendar-check"></i> Devoirs Rendu
+            </div>
+
+            <div class="card-body">
+
+              <!-- modification interface better view -->
+
+              <div class="table-responsive">
+                <table class="table table-condensed table-hover table-bordered table-responsive-md">
+                  <tbody cdkDropList #doneList="cdkDropList" [cdkDropListData]="assignmentsRendu"
+                    [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
+
+                    <cdk-virtual-scroll-viewport #scrollerOui itemSize="50" class="example-viewport">
+                      <mat-card *cdkVirtualFor="let a of assignmentsRendu" class="example-card">
+                        <mat-card-header>
+                          <div mat-card-avatar>
+                            <img class="img-card" src="assets/images/matiere/{{a.imageMatiere}}">
+                          </div>
+                          <mat-card-title>{{a.matiere}}</mat-card-title>
+                          <mat-card-subtitle>L'etudiant(e) <b>{{a.nom}}</b>, a un devoir sur <b>{{a.matiere}}</b> a
+                            rendre le <b>{{a.dateDeRendu | date}}</b> </mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                          <p *ngIf="a.rendu; else nonsoumis" appRendu><b>{{a.nom}}, rendu par
+                              l'élève.</b> </p>
+                          <ng-template #nonsoumis>
+                            <p appNonRendu>
+                              {{a.nom}}, non encore rendu par l'élève.
+                            </p>
+                          </ng-template>
+                        </mat-card-content>
+                      </mat-card>
+                    </cdk-virtual-scroll-viewport>
+                  </tbody>
+
+                </table>
+              </div>
+
+
+            </div>
+
+          </div>
+          <!-- end card-->
+        </div>
+
+      </div>
+    </div>
+    <!-- END container-fluid -->
+
+  </div>
+  <!-- END content -->
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true" #content>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Veuillez noter cette eleve</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form (ngSubmit)="updatenote($event)">
+
+        <div class="modal-body">
+          Notez cette personne pour que le devoir soit rendu
+          <input type="number" [(ngModel)]="note" name="note">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closemodal()" data-dismiss="modal">Annuler</button>
+          <button type="submit" class="btn btn-primary">Confirmer</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

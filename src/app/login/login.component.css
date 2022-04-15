@@ -1,0 +1,19 @@
+.form {
+    display:flex;
+    flex-direction: column;
+    margin:5px;
+    
+}
+mat-card{
+    padding: 50px;
+    width: fit-content;
+}
+
+.center{
+    text-align: center;
+}
+
+#back {
+    background-image: url('../../assets/images/ivancik.jpg');
+
+}

@@ -1,0 +1,79 @@
+<div class="page-content" id="back">
+    <div class="form-v8-content">
+        <div class="form-right">
+            <div class="tab">
+                <div class="tab-inner">
+                    <button class="tablinks" onclick="openCity(event, 'sign-up')" id="defaultOpen">Connexion</button>
+                </div>
+            </div>
+            <form [formGroup]="signin" class="form-detail" (ngSubmit)="onSubmit()">
+                <div class="tabcontent" id="sign-up">
+                    <div class="form-row">
+                        <label class="form-row-inner">
+                            <input type="text" formControlName="email" required  id="full_name" class="input-text" required>
+                            <span class="label">Email</span>
+                              <span class="border"></span>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label class="form-row-inner">
+                            <input type="password" formControlName="password" required  id="password" class="input-text" required>
+                            <span class="label">Mot de passe</span>
+                            <span class="border"></span>
+                        </label>
+                    </div>
+                    <div class="form-row-last">
+                        <input type="submit" name="Login" class="register" value="Login">
+                    </div>
+                    <span class="error">{{champs}}</span>
+                </div>
+            </form>
+        </div>
+        <div class="form-right">
+            <div class="tab">
+                <div class="tab-inner">
+                    <button class="tablinks" onclick="openCity(event, 'sign-up')" id="defaultOpen">Inscription</button>
+                </div>
+            </div>
+            <form [formGroup]="register" class="form-detail" (submit)="onSubmit()">
+                <div class="tabcontent" id="sign-up">
+                    <div class="form-row"><label class="form-row-inner"><span class="label">Role</span></label></div>
+                    <div class="form-row">
+                        <label class="form-row-inner">
+                            <mat-radio-group formControlName="roleRegister" class="floatRight" aria-label="Select an option">
+                                <mat-radio-button value="Etudiant">Etudiant</mat-radio-button> &nbsp;
+                                <mat-radio-button value="Prof">Prof</mat-radio-button>&nbsp;
+                                <mat-radio-button value="Admin">Admin</mat-radio-button>
+                            </mat-radio-group>
+                        </label>
+                    </div><br/>
+                    <div class="form-row">
+                        <label class="form-row-inner">
+                            <input type="text" formControlName="nameRegister" required id="full_name" class="input-text" required>
+                            <span class="label">Nom</span>
+                              <span class="border"></span>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label class="form-row-inner">
+                            <input type="text" formControlName="emailRegister" required id="full_name" class="input-text" required>
+                            <span class="label">Email</span>
+                              <span class="border"></span>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label class="form-row-inner">
+                            <input type="password" formControlName="passwordRegister" id="password" class="input-text" required>
+                            <span class="label">Mot de passe</span>
+                            <span class="border"></span>
+                        </label>
+                    </div>
+                    <div class="form-row-last">
+                        <input type="submit" name="register" class="register" value="S'inscrire">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</div>

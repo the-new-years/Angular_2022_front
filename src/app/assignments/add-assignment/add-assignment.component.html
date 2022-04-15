@@ -1,0 +1,105 @@
+<app-navigation></app-navigation>
+
+<div class="content-page">
+
+<div class="content">
+
+  <div class="container-fluid">
+
+
+      <div class="row">
+          <div class="col-xl-12">
+              <div class="breadcrumb-holder">
+                  <h1 class="main-title float-left">Assignments</h1>
+                  <ol class="breadcrumb float-right">
+                      <li class="breadcrumb-item">Accueil</li>
+                      <li class="breadcrumb-item active">Ajouter une assignment</li>
+                  </ol>
+                  <div class="clearfix"></div>
+              </div>
+          </div>
+      </div>
+      <!-- end row -->
+
+
+      <div class="row">
+
+          <div class="card mb-3">
+              <div class="card-header">
+                  <h3>Ajout assignment</h3>
+              </div>
+
+              <div class="card-body">
+
+                <form ngForm #formAssignment class="form" (submit)="onSubmit($event); formAssignment.reset();">
+                      <div class="form-group">
+                          <label for="NomDuDevoir">Nom <span class="text-danger"></span></label>
+                          <input type="text" name="nom" data-parsley-trigger="change" [(ngModel)]="nom" required placeholder="{{nomUser}}" class="form-control" disabled>
+                      </div>
+                      <div class="form-group">
+                        <label for="NomDuDevoir">Nom du devoir <span class="text-danger">*</span></label>
+                        <input type="text" name="nomDevoir" data-parsley-trigger="change" [(ngModel)]="nomDevoir" required placeholder="Designation du devoir" class="form-control">
+                    </div>
+                        <label for="NomDuDevoir">Matiere <span class="text-danger">*</span></label>
+                        <mat-select class="form-control" >
+                            <mat-option *ngFor="let matiere of allMatiere" id="matieres" [value]="matiere.designation" (click)="setImage(matiere.image,matiere.imageProf,matiere.prof,matiere.designation)">
+                              {{matiere.designation}}
+                            </mat-option>
+                        </mat-select>
+                      <div class="form-group">
+                        <br/>
+                        <div *ngIf ="divImage">
+                            <div>
+                                <label><span>Votre prof: <b>{{nomProf}}</b></span></label>
+                                <label class="float-right"><span>Illustration matiere</span></label>
+                            </div>
+                            <div>
+                                <img class="fit-picture" src="../../../assets/images/prof/{{saryProf}}">
+                                <img class="fit-picture float-right" src="../../../assets/images/matiere/{{saryMatiere}}">
+                            </div>
+                        </div><br/><br/>
+                        <label>Date de la rendu:<span class="text-danger"></span></label><br/>
+                        <label for="NomDuDevoir">Choisissez une date<span class="text-danger">*</span></label>
+                        <input matInput [matDatepicker]="picker" required [(ngModel)]="dateDeRendu" name="date">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+                        <mat-datepicker #picker></mat-datepicker>
+                      </div>  
+
+                      <div class="form-group text-right m-b-0">
+                          <button class="btn btn-primary" type="submit">
+                            Ajouter un devoir
+                          </button>
+                      </div>
+
+                  </form>
+
+              </div>
+
+          </div><!-- end card-->
+
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h3><i class="fas fa-download"></i> Example 2</h3>
+                    Maximum 3 files, all files together must have maximal 3MB and the extensions must be matched in the array ['jpg', 'png', 'gif'].
+                </div>
+
+                <div class="card-body">
+
+                    <input type="file" name="files[]" id="filer_example2" multiple="multiple">
+
+                </div>
+            </div>
+            <!-- end card-->
+        </div>
+
+      </div>
+      <!-- end row -->
+
+  </div>
+  <!-- END container-fluid -->
+
+</div>
+<!-- END content -->
+

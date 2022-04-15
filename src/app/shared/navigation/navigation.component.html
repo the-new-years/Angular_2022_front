@@ -1,0 +1,76 @@
+       <!-- top bar navigation -->
+       <div class="headerbar">
+
+        <!-- LOGO -->
+        <div class="headerbar-left">
+            <a class="logo">
+                <img alt="Logo" src="assets/images/logo.png" />
+                <span>Assignments</span>
+            </a>
+        </div>
+
+        <nav class="navbar-custom">
+
+            <ul class="list-inline float-right mb-0">
+                <li class="list-inline-item dropdown notif">
+                    <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" aria-haspopup="false" aria-expanded="false">
+                        <img src="assets/images/avatars/admin.png" alt="Profile image" class="avatar-rounded">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                        <!-- item-->
+                        <div class="dropdown-item noti-title">
+                            <h5 class="text-overflow">
+                                <small>Hello</small>
+                            </h5>
+                        </div>
+
+                        <!-- item-->
+                        <a (click)="onLogout()" class="dropdown-item notify-item">
+                            <i class="fas fa-power-off"></i>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </div>
+    <!-- End Navigation -->
+
+    <!-- Left Sidebar -->
+    <div class="left main-sidebar">
+
+        <div class="sidebar-inner leftscroll">
+
+            <div id="sidebar-menu">
+
+                <ul>
+
+                    <li class="submenu">
+                        <a routerLink="/home">
+                            <i class="fas fa-user"></i>
+                            <span> Listes devoirs </span>
+                        </a>
+                    </li>
+
+                    <li class="submenu">
+                        <a routerLink="/list">
+                            <i class="fas fa-file-alt"></i>
+                            <span> Liste Rendu / Non Rendu </span>
+                        </a>
+                    </li>
+
+                </ul>
+
+                <div class="clearfix"></div>
+
+            </div>
+
+            <div class="clearfix"></div>
+
+        </div>
+
+    </div>
+    <!-- End Sidebar -->

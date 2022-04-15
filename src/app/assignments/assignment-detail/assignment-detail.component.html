@@ -1,0 +1,107 @@
+<app-navigation></app-navigation>
+
+<div class="content-page">
+
+<div class="content">
+
+  <div class="container-fluid">
+
+
+      <div class="row">
+          <div class="col-xl-12">
+              <div class="breadcrumb-holder">
+                  <h1 class="main-title float-left">Assignments</h1>
+                  <ol class="breadcrumb float-right">
+                      <li class="breadcrumb-item">Accueil</li>
+                      <li class="breadcrumb-item active">Modification de l'assignment</li>
+                  </ol>
+                  <div class="clearfix"></div>
+              </div>
+          </div>
+      </div>
+      <!-- end row -->
+
+
+      <div class="row">
+
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+              <div class="card mb-3">
+
+                  <div class="card-header">
+                    <span class="pull-right" ><button class="btn btn-success btn-sm"  *ngIf="!assignmentTransmis.rendu && roleUser ==='Prof'" (click)="showstepper()"><i class="fas fa-times" aria-hidden="true"></i> Noté le devoir</button></span>
+                    <span class="pull-right"><button class="btn btn-danger btn-sm" (click)="onDelete()"><i class="fas fa-times" aria-hidden="true"></i> Supprimer</button></span>
+                      <span class="pull-right"><button class="btn btn-primary btn-sm" (click)="onClickEdit($event)"><i class="fas fa-times" aria-hidden="true"></i> Modification</button></span>
+                      
+                      <h3><i class="far fa-file-alt"></i> Assignment</h3>
+                  </div>
+                  <!-- end card-header -->
+
+                  <div class="card-body">
+
+                    <div class="card border-success mb-3">
+                      <div class="card-header">Cours</div>
+                      <div class="card-body text-success">
+                          <h4 class="card-title">{{assignmentTransmis.nom}} <b>{{assignmentTransmis.dateDeRendu | date}}</b></h4>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                  </div>
+
+                  </div>
+                  <!-- end card-body -->
+
+              </div>
+              <!-- end card -->
+
+          </div>
+          <!-- end col -->
+
+      </div>
+      <!-- end row -->
+      <mat-horizontal-stepper [linear]="isLinear" #stepper id="stepper" hidden> 
+        <mat-step [stepControl]="firstFormGroup">
+           <form [formGroup]="firstFormGroup">  
+            <ng-template matStepLabel>Step 1</ng-template>
+            <div class="md-form">
+              <label>Commentaire:</label>
+              <textarea type="text" class="input-text" formControlName="commentaire" class="md-textarea md-textarea-auto form-control" mdbInput></textarea>
+             </div>  
+            <button mat-button mat-raised-button color="primary" matStepperNext>Next</button>        
+          </form>
+        </mat-step>
+    
+        <mat-step [stepControl]="secondFormGroup">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Step 2</ng-template>
+            <label>Notez le devoir:</label><br/>
+            <mat-form-field>
+              <input class="input-text" matInput placeholder="Note" formControlName="note" type="number"  min="0" max="20" required>
+            </mat-form-field>
+            <button mat-button mat-raised-button color="" matStepperPrevious>Back</button>  
+            <button mat-button mat-raised-button color="primary" matStepperNext>Next</button>
+          </form>
+          <div *ngIf="!secondFormGroup.valid">
+            <label>Entrer une note entre 0 et 20</label><br/>
+          </div>
+        </mat-step>
+    
+        <mat-step>
+          <ng-template matStepLabel icon>Valider</ng-template>
+          <label>Confirmez vos propos: </label>
+            <div class="md-form">
+              <label>Commentaires:</label>
+              <textarea type="text" class="input-text" class="md-textarea md-textarea-auto form-control" matInput value="{{this.firstFormGroup.value.commentaire}}"mdbInput required disabled></textarea>
+              <mat-form-field>
+                <label>Note du devoir:</label>
+                <input class="input-text" matInput value="{{this.secondFormGroup.value.note}}" type="number" required disabled>
+              </mat-form-field>
+            </div>     
+          <button mat-button mat-raised-button color="primary" (click)="onAssignmentRendu()">Valider</button>      
+        </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+  <!-- END container-fluid -->
+
+</div>
+<!-- END content -->
+</div>

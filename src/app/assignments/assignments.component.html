@@ -1,0 +1,121 @@
+<app-navigation></app-navigation>
+
+<div class="content-page">
+
+
+    <!-- Start content -->
+    <div class="content">
+
+      <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="breadcrumb-holder">
+                    <h1 class="main-title float-left">Assignments</h1>
+                    <ol class="breadcrumb float-right">
+                        <li class="breadcrumb-item">Accueil</li>
+                        <li class="breadcrumb-item active">Liste des assignments</li>
+                    </ol>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+
+
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+                <div class="card mb-3">
+
+                    <div class="card-header">
+                        <span class="pull-right"><a routerLink="/add" class="btn btn-primary btn-sm"><i
+                                    class="fas fa-plus" aria-hidden="true"></i> Ajouter un assignments</a></span>
+                        <h3><i class="far fa-file-alt"></i> Liste des assignments</h3>
+                    </div>
+                    <!-- end card-header -->
+
+                    <div class="card-body">
+
+                        <div class="table-responsive">
+                            <table class="table table-condensed table-hover table-bordered table-responsive-md">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 50px">Matière</th>
+                                        <th style="min-width: 120px">Details</th>
+                                        <th style="min-width: 110px">Professeur</th>
+                                        <th style="min-width: 110px">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr *ngFor="let a of assignments">
+                                        
+                                        <td>
+                                            <div class="blog_list"><img class="img-fluid d-none d-lg-block" alt="image"
+                                                    src="assets/images/matiere/{{a.imageMatiere}}" /></div>
+                                        </td>
+                                        <td>
+                                            <h5><a routerLink="/assignment/{{a.id}}"><b>{{a.matiere}}</b></a></h5>
+                                            <p>{{a.designations}}</p>
+                                            <p><b>{{a.dateDeRendu | date}}</b></p>
+                                            <p *ngIf="a.rendu; else nonsoumis" appRendu><b>{{a.matiere}}</b>, rendu par <b>{{a.nom}} </b></p>
+                                            <ng-template #nonsoumis>
+                                                <p appNonRendu>
+                                                    <b>{{a.matiere}}</b>, pas encore rendu par <b>{{a.nom}} </b>
+                                                </p>
+                                            </ng-template>
+                                        </td>
+
+                                        <td>
+                                            <div class="mail_list">
+                                            <img alt="image " class="img-fluid d-none d-lg-block " src="assets/images/prof/{{a.imageProf}}" />
+                                            </div> 
+                                            <p>{{a.prof}}</p>
+                                        </td>
+
+                                        <td>
+                                            <a routerLink="/assignment/{{a.id}}"
+                                                class="btn btn-primary btn-sm btn-block"><i class="fas fa-info-circle"></i>
+                                                Details</a>
+                                            <a (click)="onDeleteAssignment(a)" class="btn btn-danger btn-sm btn-block mt-2"><i 
+                                                    class="fas fa-trash"></i> Suppression</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                <button type="button" class="btn btn-secondary"
+                                    (click)="premierePage()">Première</button>
+                                <button type="button" class="btn btn-secondary" [disabled]="!hasPrevPage"
+                                    (click)="pagePrecedente()">Prev</button>
+                                <button type="button" class="btn btn-secondary" [disabled]="!hasNextPage"
+                                    (click)="pageSuivante()">Suiv</button>
+                                <button type="button" class="btn btn-secondary"
+                                    (click)="dernierePage()">Dernière</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- end card-body -->
+
+                </div>
+                <!-- end card -->
+
+            </div>
+            <!-- end col -->
+
+        </div>
+        <!-- end row -->
+
+      </div>
+      <!-- END container-fluid -->
+
+    </div>
+
+    
+      
+  </div>
