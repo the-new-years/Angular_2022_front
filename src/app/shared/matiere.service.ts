@@ -10,7 +10,7 @@ export class MatiereService {
 
   constructor(private loggingService:LoggingService, private http:HttpClient,private authService:AuthService) { }
 
-  uri = "https://angular-front-kanga-ahibo.herokuapp.com/api/matiere";
+  uri = "https://angular-backend-kanga-ahibo.herokuapp.com/api/matiere";
  
 
   allMatiere(matiere:any):Observable<any> {

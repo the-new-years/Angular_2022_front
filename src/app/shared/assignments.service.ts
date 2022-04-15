@@ -14,9 +14,9 @@ export class AssignmentsService {
 
   constructor(private loggingService:LoggingService, private http:HttpClient,private authService:AuthService) { }
 
-  uri = "https://angular-front-kanga-ahibo.herokuapp.com/api/assignments";
-  uriRenduOui = "https://angular-front-kanga-ahibo.herokuapp.com/api/assignmentsRenduTrue";
-  uriRenduNon = "https://angular-front-kanga-ahibo.herokuapp.com/api/assignmentsRenduFalse";
+  uri = "https://angular-backend-kanga-ahibo.herokuapp.com/api/assignments";
+  uriRenduOui = "https://angular-backend-kanga-ahibo.herokuapp.com/api/assignmentsRenduTrue";
+  uriRenduNon = "https://angular-backend-kanga-ahibo.herokuapp.com/api/assignmentsRenduFalse";
    
   getAssignments():Observable<Assignment[]> {
     console.log("Dans le service de gestion des assignments...")
