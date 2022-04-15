@@ -10,9 +10,8 @@ export class MatiereService {
 
   constructor(private loggingService:LoggingService, private http:HttpClient,private authService:AuthService) { }
 
-  uri = "http://localhost:8010/api/matiere";
-  //uri = "https://mbdsangularback.herokuapp.com/api/matiere"
-  //uri = "https://backmadagascar2021.herokuapp.com/api/assignments"
+  uri = "https://angular-front-kanga-ahibo.herokuapp.com/api/matiere";
+ 
 
   allMatiere(matiere:any):Observable<any> {
     return this.http.get(this.uri, matiere);

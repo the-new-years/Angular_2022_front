@@ -15,8 +15,8 @@ export class AuthService {
 
   constructor(private http:HttpClient) { }
 
-  uri = "http://localhost:8010/api/auth";
-  //uri = "https://mbdsangularback.herokuapp.com/api/auth"
+  uri = "https://angular-front-kanga-ahibo.herokuapp.com/api/auth";
+  
 
   authentification(login:any):Observable<any> {
     console.log("Authentification...")
